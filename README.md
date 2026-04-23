@@ -6,7 +6,9 @@ Tested on a **UDM SE**.
 
 ## Why
 
-Some WAN failure modes don't recover on their own:
+Originally built to work around an **AT&T DHCP bug** that drops the connection roughly every two weeks and can take **30+ minutes** to re-establish on its own. Forcibly bouncing the WAN interface at the first sign of failure brings the connection back in seconds instead.
+
+More generally, some WAN failure modes don't recover on their own:
 
 - The physical link stays up but the upstream drops you silently.
 - DHCP lease survives but the ISP stops routing your traffic.
@@ -48,8 +50,8 @@ SSH into the UDM as `root`, then:
 ```sh
 mkdir -p /data/scripts
 cd /data/scripts
-curl -O https://raw.githubusercontent.com/brianbuquoi/wanbounce/main/wan-bounce.sh
-curl -O https://raw.githubusercontent.com/brianbuquoi/wanbounce/main/wan-bounce.service
+curl -O https://raw.githubusercontent.com/brianbuquoi/wan-bounce/main/wan-bounce.sh
+curl -O https://raw.githubusercontent.com/brianbuquoi/wan-bounce/main/wan-bounce.service
 chmod +x wan-bounce.sh
 
 cp /data/scripts/wan-bounce.service /etc/systemd/system/wan-bounce.service
